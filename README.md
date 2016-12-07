@@ -2,7 +2,6 @@
 
 [![license](https://img.shields.io/github/license/dlvoy/lzg.svg)](https://github.com/dlvoy/lzg/blob/master/LICENSE)
 [![NPM version](http://img.shields.io/npm/v/lzg.svg?style=flat)](https://www.npmjs.com/package/lzg)
-[![Build Status](https://img.shields.io/travis/dlvoy/lzg.svg?style=flat)](https://travis-ci.org/dlvoy/lzg)
 [![Dependencies Status](http://img.shields.io/david/dlvoy/lzg.svg?style=flat)](https://david-dm.org/dlvoy/lzg)
 
 **lzg** is library and command line tool to compress and decompress files and streams using LZG compression algorithm
