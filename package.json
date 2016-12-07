@@ -1,0 +1,38 @@
+{
+  "name": "lzg",
+  "version": "1.0.0",
+  "author": "Dominik Dzienia <dominik.dzienia@gmail.com>",
+  "license": "MIT",
+  "description": "LZG compression, liblzg LZ77 based minimalist lossless data command line compressor and Node.js library",
+  "main": "lib/lib.js",
+  "keywords": [
+    "zlib",
+    "compression",
+    "lzg",
+    "LZ77",
+    "tool",
+    "commandline"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dlvoy/lzg.git"
+  },
+  "scripts": {
+    "build": "cd ./vendor && emmake make clean install",
+    "test": "cd ./tests && node ./test.js"
+  },
+  "devDependencies": {
+    "lorem-ipsum": "^1.0.3",
+    "sha1": "^1.1.1"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "2.9.0",
+    "filepath": "~1.1.0",
+    "pkginfo": "~0.4.0"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "lzg": "./bin/lzg"
+  }
+}
