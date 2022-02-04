@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
-var path = require('path');
-var fs   = require('fs');
-var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+var path = require("path");
+var fs = require("fs");
+var lib = path.join(path.dirname(fs.realpathSync(__filename)), "../lib");
 
-require(lib + '/app.js').run();
+(async () => {
+  await require(lib + "/app.js").run();
+})();

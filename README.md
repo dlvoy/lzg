@@ -1,8 +1,8 @@
 # LZG Compression
 
 [![license](https://img.shields.io/github/license/dlvoy/lzg.svg)](https://github.com/dlvoy/lzg/blob/master/LICENSE)
-[![NPM version](http://img.shields.io/npm/v/lzg.svg?style=flat)](https://www.npmjs.com/package/lzg)
-[![Dependencies Status](http://img.shields.io/david/dlvoy/lzg.svg?style=flat)](https://david-dm.org/dlvoy/lzg)
+[![NPM version](https://img.shields.io/npm/v/lzg.svg?style=flat)](https://www.npmjs.com/package/lzg)
+[![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/dlvoy/lzg)](https://libraries.io/npm/lzg)
 
 **lzg** is library and command line tool to compress and decompress files and streams using LZG compression algorithm
 
@@ -13,46 +13,49 @@ In general, lzg does not compress as well as zlib, for instance. On the other ha
 Compressed files can be easily decompresed in-browser with very low-footprint lzgmini decompressor:
 https://github.com/mbitsnbites/liblzg/tree/master/src/extra/lzgmini.js
 
-This Node.JS module is based on original C implementation of liblzg (ver. 1.0.9) by Marcus Geelnard
+This Node.JS module is based on original C implementation of liblzg (ver. 1.0.10) by Marcus Geelnard
 
 ## Setup as command line tool
 
-* install [Node.JS](https://nodejs.org) (if not already installed)
-* from command line execute:
+- install [Node.JS](https://nodejs.org) (if not already installed)
+- from command line execute:
 
 ```sh
-$ npm install -g lzg 
-``` 
+$ npm install -g lzg
+```
 
 ## Usage
 
-Compression 
+Compression
+
 ```sh
 $ lzg [options] <originalFile> <compressedFile>
-``` 
+```
 
-Decompression 
+Decompression
+
 ```sh
 $ lzg -d <compressedFile> <decompressedFile>
-``` 
+```
 
 For full list of supported options execute:
+
 ```sh
 $ lzg -h
-``` 
+```
 
 ## Options
 
-All options are *optional*. When not specified, they are *ignored* or have *default value*.
-Boolean options are *true* if flag is present, *false* otherwise.
+All options are _optional_. When not specified, they are _ignored_ or have _default value_.
+Boolean options are _true_ if flag is present, _false_ otherwise.
 
-Option                                     | Type            | Default value
----                                        | :---:           | ---       
-[`-d`, `--decompress`](#option-decompress) | `Boolean`       | false
-[`-l`, `--level`](#option-level)           | `Integer` [1..9]| 9
-[`-v`, `--verbose`](#option-verbose)       | `Boolean`       | false
-[`-h`, `--help`](#option-help)             | `Boolean`       |
-[`-V`, `--version`](#option-version)       | `Boolean`       |
+| Option                                     |       Type       | Default value |
+| ------------------------------------------ | :--------------: | ------------- |
+| [`-d`, `--decompress`](#option-decompress) |    `Boolean`     | false         |
+| [`-l`, `--level`](#option-level)           | `Integer` [1..9] | 9             |
+| [`-v`, `--verbose`](#option-verbose)       |    `Boolean`     | false         |
+| [`-h`, `--help`](#option-help)             |    `Boolean`     |
+| [`-V`, `--version`](#option-version)       |    `Boolean`     |
 
 ### Option decompress
 
@@ -80,57 +83,71 @@ Displays version of application (match NPM/Git version number).
 
 ```sh
 $ npm test
-``` 
+```
 
 ## Using as library in Node.JS
 
-### .compressFile(inputFilePath, outputFilePath, compressionlevel = 9, verbose = false)
+### .compressFileAsync(inputFilePath, outputFilePath, compressionlevel = 9, verbose = false)
 
 compress specified input file to output file
 
 ```js
-var lzg = require('lzg');
-lzg.compressFile('big.txt', 'copressed.lzg', 9, true);
+var lzg = require("lzg");
+await lzg.compressFileAsync("big.txt", "copressed.lzg", 9, true);
 ```
 
-### .decompressFile(inputFilePath, outputFilePath, verbose = false)
+### .decompressFileAsync(inputFilePath, outputFilePath, verbose = false)
 
 decompress specified lzg file to original output file
 
 ```js
-var lzg = require('lzg');
-lzg.decompressFile('copressed.lzg', 'original.txt', true);
+var lzg = require("lzg");
+await lzg.decompressFileAsync("copressed.lzg", "original.txt", true);
 ```
 
-### .compress(sourceRawBuffer, compressionlevel = 9, verbose = false)
+### .compressAsync(sourceRawBuffer, compressionlevel = 9, verbose = false)
 
 returns compressed Node.JS buffer object
 
-### .decompress(sourceCompressedBuffer, verbose = false)
+### .decompressAsync(sourceCompressedBuffer, verbose = false)
 
 returns decompressed Node.JS buffer object
 
 ## Rebuilding liblzg from C sources
 
 First, install and configure Emscripten from http://emscripten.org/
+On Windows, use WSL2 to build
 
 Then run command:
+
 ```sh
 $ npm run build
-``` 
+```
 
 or build it directly:
 
 ```sh
 $ cd ./vendor
 $ emmake make clean install
-``` 
+```
+
+## Version history
+
+**2.0.0** `2022-02-04`
+
+- upgraded for most recent version od emscripten
+- upgraded liblzg
+- converted to async
+
+**1.0.0** `2016-12-07`
+
+- initial release
 
 ## Acknowledgements
 
 This project is port of original C implementation of liblzg
 
-Copyright (c) 2010-2015 Marcus Geelnard
+Copyright (c) 2010-2022 Marcus Geelnard
 http://liblzg.bitsnbites.eu/
 https://github.com/mbitsnbites/liblzg
 

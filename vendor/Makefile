@@ -11,6 +11,7 @@ CC = emcc
 CFLAGS = -c -O3 -Os -Oz -funroll-loops -W -Wall
 RM = rm -f
 OUTLIB = liblzg.js
+OUTWASM = liblzg.wasm
 
 # Files
 OBJS = encode.o \
@@ -28,6 +29,7 @@ clean:
 # Install
 install: all
 	cp $(OUTLIB) ../lib/$(OUTLIB)
+	cp $(OUTWASM) ../lib/$(OUTWASM)
 	
 # Object files build rules
 encode.o: encode.c internal.h lzg.h
@@ -46,6 +48,6 @@ lzgbridge.o: lzgbridge.c internal.h lzg.h
 	$(CC) $(CFLAGS) $<
 	
 $(OUTLIB): $(OBJS)
-	$(CC) $(OBJS) -o $(OUTLIB) -s EXPORTED_FUNCTIONS='["_compress_lzg", "_LZG_MaxEncodedSize", "_LZG_DecodedSize", "_LZG_Decode"]' -s ALLOW_MEMORY_GROWTH=1
+	$(CC) $(OBJS) -o $(OUTLIB) -s EXPORTED_FUNCTIONS='["_compress_lzg", "_LZG_MaxEncodedSize", "_LZG_DecodedSize", "_LZG_Decode", "_malloc", "_free"]' -s ALLOW_MEMORY_GROWTH=1 -s ENVIRONMENT='node' -s MODULARIZE=1 -s 'EXPORT_NAME="createLzgModule"' -s EXPORTED_RUNTIME_METHODS='["getValue", "setValue", "ccall"]'
 
 

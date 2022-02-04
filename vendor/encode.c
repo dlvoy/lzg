@@ -3,7 +3,7 @@
 /*
 * This file is part of liblzg.
 *
-* Copyright (c) 2010-2015 Marcus Geelnard
+* Copyright (c) 2010-2018 Marcus Geelnard
 *
 * This software is provided 'as-is', without any express or implied
 * warranty. In no event will the authors be held liable for any damages
@@ -230,7 +230,7 @@ static void _LZG_SearchAccel_Init(search_accel_t* self,
     self->tab = (unsigned char**) (((hist_rec*) workingMemory) + 256);
     memset(self->tab, 0, params->window * sizeof(unsigned char**));
     self->last = self->tab + params->window;
-    memset(self->tab, 0, (fast ? 16777216 : 65536) * sizeof(unsigned char *));
+    memset(self->last, 0, (fast ? 16777216 : 65536) * sizeof(unsigned char *));
 
     /* Init parameters */
     self->params = *params;
